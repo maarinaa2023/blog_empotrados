@@ -34,7 +34,7 @@ Esto se producía porque el botón del joystick estaba configurado como INPUT_PU
 Pero en mi código trataba HIGH como pulsación, provocando reinicios constantes. Es por ello que si no pulsaba el botón, esté se reiniciaba sin parar.
 
 
-Solución:
+**Solución:**
 Invertir la lógica:
 
 if (buttonState == LOW) {   // botón realmente pulsado
@@ -49,11 +49,9 @@ Esto se producía por dos causas combinadas:
 
 El estado PREPARANDO se abandonaba antes de tiempo (problema 1), por lo que no daba tiempo al PWM a incrementarse.
 
-En algunos puntos se calculaba el progreso así:  progreso = (float) (elapsed / durante);
+En algunos puntos se calculaba el progreso así:  progreso = (float) (elapsed / durante); pero si ambos datos son unsigned long, la división ocurre antes del cast, resultando en 0.
 
-pero si ambos datos son unsigned long, la división ocurre antes del cast, resultando en 0.
-
-Solución:
+**Solución:**
 Asegurar conversión correcta: progreso = (float)elapsed / (float)durante;
 
 
@@ -62,7 +60,7 @@ Asegurar conversión correcta: progreso = (float)elapsed / (float)durante;
 
 Durante varios días dedique bastante tiempo a entender porque no se actualizaban de manera correcta mis variables, inicializadas dentro de este, ya que la medición del sensor DHT 11 mostraba datos que no correspondían con la situación actual.
 
-Solución:
+**Solución:**
 Gracias a la ayuda del profesor pudimos entender que el problema residía en tratar de no inicializar varuables en este ámbito, dado que no son correctamnete gestionabas, devolviendo basura en algunos casos.
 
 
@@ -71,7 +69,7 @@ Gracias a la ayuda del profesor pudimos entender que el problema residía en tra
 
 A la hora de mostrar las opciones posibles en la pantalla, y acceder a sus funcionalidades se solapaban ambos menús. Haciendo así que el muestreo de datos fuera ilegible, pero debía procurar mantener que este fuera de manera dinámica.
 
-Solución:
+**Solución:**
 Tuve que incluir unos delays para que la visualización fuera más cómoda a nivel de usuario.
 
 
@@ -80,7 +78,7 @@ Tuve que incluir unos delays para que la visualización fuera más cómoda a niv
 
 Inicialmente solo podía acceder a cambiar mis precios de manera dinámica, pero sin poder navegar correctamente por mi manú, quedandome siempre en la misma opción (Café Solo).
 
-Solución:
+**Solución:**
 Gestionarlo de manera independiente, teniendo en cuenta todos los casos de movimientos de mi joystick y evitando interferencias en el trascurso de mi código.
 
 
@@ -88,6 +86,11 @@ Gestionarlo de manera independiente, teniendo en cuenta todos los casos de movim
 ## Vídeo que muestra la ejecucción
 
 https://drive.google.com/drive/folders/18bU9Q4GfBDskf69KW0pkdE_lCH1dRSQ3?usp=sharing
+
+
+## Esquema del circuito
+
+<img width="975" height="946" alt="imagen" src="https://github.com/user-attachments/assets/304bada6-315c-4617-9447-afa2f86cb7fe" />
 
 
 
